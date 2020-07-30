@@ -1,15 +1,12 @@
 <template>
     <span class="p-3">
-        {{ legend }}
+        {{ title }}
     </span>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            legend: "Shipping takes 10-12 weeks, and products probably won't work",
-        };
-    },
+    name: 'Legend',
+    props: ['title'],
 };
 </script>
