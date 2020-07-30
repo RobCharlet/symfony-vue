@@ -1,6 +1,7 @@
 import Vue from 'vue';
+import App from './pages/products';
 
-const app = new Vue({
+new Vue({
     el: '#app',
-    template: '<h1>Hello Vue!</h1>',
-});
+    render: (h) => h(App),
+}).$mount('#app');
