@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row">
             <aside class="col-xs-12 col-3">
-                <div class="p-3 mb-5">
+                <div class="sidebar p-3 mb-5">
                     <h5 class="text-center">
                         Categories
                     </h5>
@@ -60,3 +60,17 @@ export default {
     },
 };
 </script>
+
+<style lang="scss">
+    @import "../../scss/components/light-component";
+
+    .sidebar {
+        @include light-component;
+    }
+
+    ul {
+        li a:hover {
+            background: $blue-component-link-hover;
+        }
+    }
+</style>
