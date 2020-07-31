@@ -86,4 +86,9 @@ Encore
 //.enableReactPreset()
 //.addEntry('admin', './assets/js/admin.js');
 
+// EMbed css into javascript in dev mode to refresh css in hot module replacement
+if (!Encore.isProduction()) {
+    Encore.disableCssExtraction();
+}
+
 module.exports = Encore.getWebpackConfig();
