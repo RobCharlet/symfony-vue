@@ -1,38 +1,37 @@
 <template>
     <div
-        :class="[$style.sidebar, 'p-3', 'mb-5']"
-        :style="{ width: collapsed ? '70px' : 'auto' }"
+        :class="componentClass"
     >
-        <h5 class="text-center">
-            Categories
-        </h5>
-        <ul class="nav flex-column mb4">
-            <li class="nav-item">
-                <a
-                    class="nav-link"
-                    href="/"
-                >All Products</a>
-            </li>
-            <li
-                v-for="(category, index) in categories"
-                :key="index"
-                class="nav-item">
-                <a
-                    class="nav-link"
-                    :href="category.link"
-                >{{ category.name }}</a>
-            </li>
-        </ul>
+        <div v-show="!collapsed">
+            <h5 class="text-center">
+                Categories
+            </h5>
+            <ul class="nav flex-column mb4">
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href="/"
+                    >All Products</a>
+                </li>
+                <li
+                    v-for="(category, index) in categories"
+                    :key="index"
+                    class="nav-item">
+                    <a
+                        class="nav-link"
+                        :href="category.link"
+                    >{{ category.name }}</a>
+                </li>
+            </ul>
 
-        <hr>
-
+            <hr>
+        </div>
         <div class="d-flex justify-content-end">
             <button
                 class="btn btn-secondary btn-sm"
                 @click="toggleCollapsed"
                 v-text="collapsed ? '>>' : '<< collapse'"
             >
-
             </button>
         </div>
     </div>
@@ -56,6 +55,22 @@ export default {
             ],
         };
     },
+    computed: {
+        /**
+         * Computes the component classes depending on collapsed state
+         *
+         * @returns string[]
+         */
+        componentClass() {
+            const classes = [this.$style.component, 'p-3', 'mb-5'];
+
+            if (this.collapsed) {
+                classes.push(this.$style.collapsed);
+            }
+
+            return classes;
+        },
+    },
     methods: {
         toggleCollapsed() {
             this.collapsed = !this.collapsed;
@@ -67,8 +82,12 @@ export default {
 <style lang="scss" module>
 @import "~styles/components/light-component";
 
-.sidebar {
+.component {
     @include light-component;
+
+    &.collapsed {
+        width: 70px;
+    }
 
     ul {
         li a:hover {
