@@ -9,7 +9,7 @@
                 />
             </aside>
             <div :class="contentClass">
-                <Catalog />
+                <Catalog :current-category-id="currentCategoryId" />
             </div>
         </div>
     </div>
