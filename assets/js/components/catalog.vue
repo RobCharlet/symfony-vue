@@ -8,11 +8,13 @@
                 />
             </div>
             <div class="col-9">
-                <search-bar />
+                <search-bar
+                    @search-products="onSearchProducts"
+                />
             </div>
         </div>
         <product-list
-            :products="products"
+            :products="filteredProducts"
             :loading="loading"
         />
         <div class="row">
@@ -49,6 +51,7 @@ export default {
     data() {
         return {
             products: [],
+            searchTerm: '',
             legend: "Shipping takes 10-12 weeks, and products probably won't work",
             loading: false,
         };
@@ -66,6 +69,22 @@ export default {
             return;
         }
         this.products = response.data['hydra:member'];
+    },
+    methods: {
+        onSearchProducts(event) {
+            this.searchTerm = event.term;
+        },
+    },
+    computed: {
+        filteredProducts() {
+            if (!this.searchTerm) {
+                return this.products;
+            }
+
+            return this.products.filter((product) => (
+                product.name.toLowerCase().includes(this.searchTerm.toLowerCase())
+            ));
+        },
     },
 };
 </script>
