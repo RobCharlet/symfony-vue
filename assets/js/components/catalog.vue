@@ -2,7 +2,10 @@
     <div>
         <div class="row">
             <div class="col-12">
-                <title-component />
+                <title-component
+                    :categories="categories"
+                    :current-category-id="currentCategoryId"
+                />
             </div>
         </div>
         <product-list
@@ -32,6 +35,10 @@ export default {
         currentCategoryId: {
             type: String,
             default: null,
+        },
+        categories: {
+            type: Array,
+            required: true,
         },
     },
     data() {
